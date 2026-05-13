@@ -13,6 +13,7 @@ dist/
 
 # Logs
 *.log
+*.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
@@ -31,3 +32,4 @@ local.properties
 # Generated
 coverage/
 tmp/
+.codex-run/

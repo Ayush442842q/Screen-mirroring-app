@@ -42,6 +42,8 @@ Responsibilities:
 - WebRTC peer connection setup
 - Stream playback
 
+Initial implementation status: started.
+
 ### Android App
 
 Location: `apps/android`
@@ -67,6 +69,8 @@ Responsibilities:
 - Expire stale rooms
 
 The signaling server does not receive screen media. Media should flow over WebRTC peer connections.
+
+Initial implementation status: started.
 
 ### Protocol Package
 

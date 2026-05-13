@@ -23,9 +23,50 @@ Current phase:
 - [x] Professional documentation baseline
 - [x] v1 architecture plan
 - [x] Detailed roadmap
-- [ ] UI prototype
-- [ ] WebRTC laptop-to-mobile implementation
+- [x] UI prototype
+- [x] WebRTC laptop-to-mobile browser path
 - [ ] Android sender implementation
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm --prefix apps/web install
+npm --prefix server/signaling install
+```
+
+Start the signaling server:
+
+```bash
+npm run dev:signaling
+```
+
+Start the web app in another terminal:
+
+```bash
+npm run dev:web
+```
+
+Open:
+
+```txt
+http://localhost:5173
+```
+
+For phone/tablet testing, open the Vite network URL shown in the terminal on the receiving device. The signaling server defaults to:
+
+```txt
+ws://<laptop-ip>:8787
+```
+
+Run checks:
+
+```bash
+npm run typecheck
+npm run build
+npm --prefix server/signaling run smoke
+```
 
 ## Monorepo Layout
 

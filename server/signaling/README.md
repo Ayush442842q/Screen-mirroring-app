@@ -11,3 +11,22 @@ Responsibilities:
 - Close rooms when sessions end
 
 The server should not handle screen media.
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Default URL:
+
+```txt
+ws://localhost:8787
+```
+
+Run the smoke test while the server is running:
+
+```bash
+npm run smoke
+```

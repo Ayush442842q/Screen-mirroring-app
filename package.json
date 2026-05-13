@@ -1,0 +1,17 @@
+{
+  "name": "mirrorlink",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "description": "Open-source cross-device screen mirroring with WebRTC.",
+  "license": "MIT",
+  "scripts": {
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:signaling": "npm --prefix server/signaling run dev",
+    "build": "npm --prefix apps/web run build",
+    "typecheck": "npm --prefix apps/web run typecheck",
+    "start:signaling": "npm --prefix server/signaling run start"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

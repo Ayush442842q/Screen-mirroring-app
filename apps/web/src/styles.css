@@ -1,0 +1,638 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8faf7;
+  color: #18201f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --bg: #f8faf7;
+  --surface: #ffffff;
+  --surface-strong: #eef4ee;
+  --ink: #18201f;
+  --muted: #667471;
+  --line: #dce5df;
+  --teal: #168f7a;
+  --teal-dark: #0c6658;
+  --amber: #e5a53a;
+  --danger: #c94b4b;
+  --shadow: 0 18px 42px rgba(20, 38, 34, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(145deg, rgba(22, 143, 122, 0.1), transparent 34rem),
+    linear-gradient(315deg, rgba(229, 165, 58, 0.12), transparent 30rem),
+    var(--bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.app {
+  width: min(1180px, calc(100vw - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 0 42px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  background: transparent;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: white;
+  border-radius: 8px;
+  background: var(--teal-dark);
+}
+
+.mode-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.mode-tabs button,
+.quality-row button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 12px;
+  color: var(--muted);
+  border-radius: 7px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mode-tabs button.active,
+.quality-row button.selected {
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 8px 18px rgba(23, 34, 33, 0.08);
+}
+
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 22px 0;
+  padding: 0 16px;
+  color: #40504d;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #a8b7b3;
+}
+
+.status-dot.room-ready,
+.status-dot.waiting,
+.status-dot.paired {
+  background: var(--amber);
+}
+
+.status-dot.streaming {
+  background: var(--teal);
+  box-shadow: 0 0 0 6px rgba(22, 143, 122, 0.14);
+}
+
+.status-dot.error {
+  background: var(--danger);
+}
+
+.home-grid,
+.workspace,
+.receiver-layout,
+.tv-lobby {
+  display: grid;
+  gap: 22px;
+}
+
+.home-grid {
+  grid-template-columns: minmax(0, 0.94fr) minmax(360px, 1.06fr);
+  align-items: center;
+  min-height: calc(100vh - 138px);
+}
+
+.intro h1,
+.tv-card h1 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(46px, 7vw, 78px);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.intro p {
+  max-width: 600px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.primary,
+.secondary,
+.danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.primary {
+  color: white;
+  background: var(--teal-dark);
+  box-shadow: 0 14px 24px rgba(12, 102, 88, 0.2);
+}
+
+.secondary {
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.danger {
+  color: white;
+  background: var(--danger);
+}
+
+.full {
+  width: 100%;
+}
+
+.device-preview {
+  position: relative;
+  min-height: 500px;
+}
+
+.preview-laptop,
+.preview-phone,
+.preview-tablet,
+.stream-panel,
+.pairing-panel,
+.join-panel,
+.receiver-player,
+.tv-card {
+  border: 1px solid rgba(190, 205, 199, 0.9);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.preview-laptop {
+  position: absolute;
+  inset: 42px 42px auto 0;
+  height: 330px;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+.preview-topline {
+  width: 42%;
+  height: 12px;
+  border-radius: 999px;
+  background: #dfe9e5;
+}
+
+.preview-video,
+.phone-stream,
+.preview-tablet {
+  display: grid;
+  place-items: center;
+  color: var(--teal-dark);
+  background:
+    linear-gradient(135deg, rgba(22, 143, 122, 0.16), transparent),
+    #edf6f2;
+}
+
+.preview-video {
+  height: 250px;
+  margin-top: 16px;
+  border-radius: 9px;
+}
+
+.preview-phone {
+  position: absolute;
+  right: 0;
+  bottom: 42px;
+  width: 188px;
+  height: 320px;
+  padding: 14px;
+  border-radius: 28px;
+}
+
+.phone-speaker {
+  width: 52px;
+  height: 6px;
+  margin: 0 auto 12px;
+  border-radius: 999px;
+  background: #cbd9d4;
+}
+
+.phone-stream {
+  height: 260px;
+  border-radius: 18px;
+}
+
+.preview-tablet {
+  position: absolute;
+  left: 38px;
+  bottom: 0;
+  width: 250px;
+  height: 168px;
+  border-radius: 18px;
+}
+
+.workspace {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.stream-panel,
+.pairing-panel,
+.join-panel,
+.receiver-player,
+.tv-card {
+  border-radius: 12px;
+}
+
+.stream-panel,
+.pairing-panel,
+.join-panel {
+  padding: 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.panel-head p,
+.join-panel p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.toolbar,
+.receiver-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.video-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid #cddbd6;
+  border-radius: 10px;
+  background: #101817;
+}
+
+.video-frame video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #101817;
+}
+
+.empty-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  color: #9eb2ad;
+  font-weight: 800;
+}
+
+.quality-row {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-strong);
+}
+
+.pairing-panel h2,
+.join-panel h2 {
+  margin-bottom: 14px;
+}
+
+.room-code {
+  display: grid;
+  min-height: 72px;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 9px;
+  background: #172523;
+  color: white;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 6px;
+}
+
+.qr-box {
+  display: grid;
+  min-height: 184px;
+  place-items: center;
+  margin-bottom: 14px;
+  color: #9db0ab;
+  border: 1px dashed #bacbc5;
+  border-radius: 10px;
+  background: #f6faf8;
+}
+
+.checklist {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.checklist div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.checklist .done {
+  color: var(--teal);
+}
+
+.receiver-layout {
+  grid-template-columns: 340px minmax(0, 1fr);
+  align-items: start;
+}
+
+.receiver-layout.focus {
+  grid-template-columns: 1fr;
+}
+
+.receiver-layout.focus .join-panel {
+  display: none;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 13px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: 0;
+  background: white;
+  font-weight: 800;
+}
+
+input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(22, 143, 122, 0.12);
+}
+
+.receiver-player {
+  overflow: hidden;
+}
+
+.video-frame.receiver {
+  border: 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.receiver-controls {
+  justify-content: center;
+  min-height: 68px;
+  border-top: 1px solid var(--line);
+  background: white;
+}
+
+.tv-lobby {
+  grid-template-columns: 360px minmax(0, 1fr);
+  align-items: stretch;
+  min-height: calc(100vh - 138px);
+}
+
+.tv-card {
+  display: grid;
+  align-content: center;
+  gap: 22px;
+  padding: 28px;
+}
+
+.tv-card h1 {
+  font-size: clamp(42px, 6vw, 68px);
+}
+
+.tv-card input {
+  min-height: 70px;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 4px;
+}
+
+.tv-button {
+  min-height: 68px;
+  font-size: 20px;
+}
+
+.tv-mode {
+  width: min(1380px, calc(100vw - 48px));
+}
+
+@media (max-width: 920px) {
+  .home-grid,
+  .workspace,
+  .receiver-layout,
+  .tv-lobby {
+    grid-template-columns: 1fr;
+  }
+
+  .home-grid {
+    min-height: auto;
+  }
+
+  .device-preview {
+    min-height: 410px;
+  }
+
+  .preview-laptop {
+    right: 20px;
+  }
+
+  .panel-head {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    width: min(100% - 20px, 1180px);
+    padding-top: 14px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mode-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .mode-tabs button {
+    flex: 1 0 auto;
+  }
+
+  .intro h1 {
+    font-size: 42px;
+  }
+
+  .intro p {
+    font-size: 16px;
+  }
+
+  .primary,
+  .secondary,
+  .danger {
+    width: 100%;
+  }
+
+  .toolbar {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .toolbar .danger {
+    width: auto;
+    flex: 1;
+  }
+
+  .device-preview {
+    min-height: 360px;
+  }
+
+  .preview-laptop {
+    inset: 20px 8px auto 0;
+    height: 250px;
+  }
+
+  .preview-video {
+    height: 180px;
+  }
+
+  .preview-phone {
+    width: 138px;
+    height: 248px;
+  }
+
+  .phone-stream {
+    height: 190px;
+  }
+
+  .preview-tablet {
+    width: 190px;
+    height: 126px;
+  }
+
+  .room-code {
+    font-size: 30px;
+  }
+}

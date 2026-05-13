@@ -1,0 +1,14 @@
+{
+  "name": "@mirrorlink/signaling",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "smoke": "node scripts/smoke-test.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
