@@ -25,7 +25,8 @@ Current phase:
 - [x] Detailed roadmap
 - [x] UI prototype
 - [x] WebRTC laptop-to-mobile browser path
-- [ ] Android sender implementation
+- [x] Android APK packaging foundation
+- [ ] Android MediaProjection sender implementation
 
 ## Local Development
 
@@ -66,6 +67,12 @@ Run checks:
 npm run typecheck
 npm run build
 npm --prefix server/signaling run smoke
+```
+
+Build Android APK:
+
+```bash
+./gradlew :apps:android:assembleDebug
 ```
 
 ## Monorepo Layout

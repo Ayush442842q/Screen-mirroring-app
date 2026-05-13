@@ -24,7 +24,7 @@ Each relevant release should include:
 
 - Web app build notes
 - Signaling server build notes
-- Android APK when Android sender is available
+- Android APK
 - Docker instructions when server packaging is available
 - Changelog
 - Compatibility table
@@ -41,6 +41,25 @@ Each relevant release should include:
 - Smoke test Android-to-mobile when applicable.
 - Create a GitHub Release with artifacts.
 - Include known limitations.
+
+## Publishing APKs
+
+APK files should be attached to GitHub Releases, not committed into the repository.
+
+The release workflow runs on tags matching:
+
+```txt
+v*
+```
+
+Example:
+
+```bash
+git tag v0.1.0-alpha.1
+git push origin v0.1.0-alpha.1
+```
+
+The workflow builds the Android debug APK and attaches it to the release. Later, this should be upgraded to signed release APKs/AABs once signing keys are configured.
 
 ## Compatibility Table Template
 

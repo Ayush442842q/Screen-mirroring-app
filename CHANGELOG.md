@@ -17,3 +17,5 @@ This project follows semantic versioning once v1 is released.
 - Browser-based laptop sender and receiver WebRTC flow.
 - Node WebSocket signaling server.
 - Signaling server smoke test for room creation, joining, and WebRTC offer relay.
+- Android app shell with APK build support.
+- GitHub Release workflow for attaching APK artifacts to tagged releases.
