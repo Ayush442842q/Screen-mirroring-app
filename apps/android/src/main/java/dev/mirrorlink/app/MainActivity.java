@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
     private static final int BG = Color.rgb(248, 250, 247);
     private static final int REQUEST_CAPTURE = 1001;
     private static final int REQUEST_NOTIFICATIONS = 1002;
-    private static final String SIGNAL_URL = "ws://10.114.231.225:8787";
+    private static final String SIGNAL_URL = "ws://127.0.0.1:8787";
 
     private TextView status;
     private TextView roomCode;
@@ -83,8 +83,17 @@ public class MainActivity extends Activity {
         setContentView(createContent());
         String room = getIntent().getStringExtra("roomCode");
         if (room != null && !room.trim().isEmpty()) {
-            joinCode.setText(room.trim().toUpperCase(Locale.US));
-            joinAsReceiver();
+            joinRoomFromIntent(room);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String room = intent.getStringExtra("roomCode");
+        if (room != null && !room.trim().isEmpty()) {
+            joinRoomFromIntent(room);
         }
     }
 
@@ -221,6 +230,7 @@ public class MainActivity extends Activity {
             setStatus("Enter the sender room code first.");
             return;
         }
+        closePeerAndSocket();
         isSender = false;
         activeRoomCode = code;
         roomCode.setText("ROOM: " + code);
@@ -229,6 +239,11 @@ public class MainActivity extends Activity {
             send(put(put(json("room:join"), "roomCode", code), "role", "receiver"));
             setStatus("Joining room " + code + ".");
         });
+    }
+
+    private void joinRoomFromIntent(String room) {
+        joinCode.setText(room.trim().toUpperCase(Locale.US));
+        joinAsReceiver();
     }
 
     private void connectSocket(Runnable onOpen) {
@@ -485,6 +500,11 @@ public class MainActivity extends Activity {
             videoSource.dispose();
             videoSource = null;
         }
+        closePeerAndSocket();
+        stopService(new Intent(this, ProjectionService.class));
+    }
+
+    private void closePeerAndSocket() {
         if (peerConnection != null) {
             peerConnection.close();
             peerConnection.dispose();
@@ -494,7 +514,6 @@ public class MainActivity extends Activity {
             socket.close(1000, "Activity closed");
             socket = null;
         }
-        stopService(new Intent(this, ProjectionService.class));
     }
 
     private LinearLayout.LayoutParams matchWidthWrapHeight() {
