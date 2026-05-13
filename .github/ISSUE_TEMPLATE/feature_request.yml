@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an improvement for MirrorLink
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the feature or improvement.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Web app
+        - Android app
+        - iOS app
+        - TV app
+        - Signaling server
+        - Documentation
+        - Other
